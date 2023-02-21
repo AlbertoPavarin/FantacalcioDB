@@ -20,6 +20,7 @@ CREATE TABLE status (
 CREATE TABLE football_player(
 	id INT AUTO_INCREMENT PRIMARY KEY,
 	name NVARCHAR(30) NOT NULL,
+	surname NVARCHAR(30) NOT NULL,
 	team INT NOT NULL,
 	`role` INT NOT NULL,
 	available BOOLEAN DEFAULT 1,
@@ -69,3 +70,22 @@ ADD CONSTRAINT fk_sp_player FOREIGN KEY (player) REFERENCES football_player(id);
 
 ALTER TABLE squad_player
 ADD CONSTRAINT squad FOREIGN KEY (squad) REFERENCES squad(id);
+
+CREATE TABLE `match` (
+	team1 INT NOT NULL,
+	team2 INT NOT NULL,
+	played BOOLEAN DEFAULT 0
+);
+
+ALTER TABLE `match` 
+ADD CONSTRAINT pk_match PRIMARY KEY (team1, team2);
+
+ALTER TABLE `match` 
+ADD CONSTRAINT fk_match_t1 FOREIGN KEY (team1) REFERENCES team(id);
+
+ALTER TABLE `match` 
+ADD CONSTRAINT fk_match_t2 FOREIGN KEY (team2) REFERENCES team(id);
+
+
+
+
