@@ -39,5 +39,12 @@ class User
 
         return $this->conn->query($sql);
     }
+
+    public function getActiveUsers()
+    {
+        $sql = "SELECT id, email, username FROM `user` WHERE active = 1";
+
+        return $this->conn->query($sql);
+    }
 }
 ?>
