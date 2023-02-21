@@ -28,7 +28,14 @@ class User
 
     public function getUser($id)
     {
-        $sql = "SELECT email, username FROM `user` WHERE id = ". $this->conn->real_escape_string($id) .";";
+        $sql = "SELECT id, email, username FROM `user` WHERE id = ". $this->conn->real_escape_string($id) .";";
+
+        return $this->conn->query($sql);
+    }
+
+    public function getArchiveUsers()
+    {
+        $sql = "SELECT id, email, username FROM `user`";
 
         return $this->conn->query($sql);
     }
