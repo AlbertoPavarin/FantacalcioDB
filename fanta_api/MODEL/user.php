@@ -46,5 +46,33 @@ class User
 
         return $this->conn->query($sql);
     }
+
+    public function deleteUser($id)
+    {
+        $sql = "UPDATE `user`
+                SET active = 0
+                WHERE id = ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        if ($stmt->execute() && $stmt->affected_rows > 0)
+            return $stmt;
+        else
+            return "";
+    }
+
+    public function activeteUser($id)
+    {
+        $sql = "UPDATE `user`
+                SET active = 1
+                WHERE id = ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        if ($stmt->execute() && $stmt->affected_rows > 0)
+            return $stmt;
+        else
+            return "";
+    }
 }
 ?>
