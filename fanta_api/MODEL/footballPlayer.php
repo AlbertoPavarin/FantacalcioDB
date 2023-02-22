@@ -37,7 +37,7 @@ class FootballPlayer
 
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('i', $id);
-        $stmt->
+        return $stmt->execute();
     }
 }
 ?>
