@@ -102,7 +102,7 @@ class FootballPlayer
                 WHERE id = ?";
 
         $stmt = $this->conn->prepare($sql);
-        $stmt->bind_param('ii', $status, $id);
+        $stmt->bind_param('ii', $role, $id);
         if ($stmt->execute() && $stmt->affected_rows > 0)
             return $stmt;
         else
