@@ -80,5 +80,33 @@ class FootballPlayer
         else
             return "";
     }
+
+    public function setFootballPlayerTeam($id, $team)
+    {
+        $sql = "UPDATE football_player
+                SET team = ?
+                WHERE id = ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ii', $team, $id);
+        if ($stmt->execute() && $stmt->affected_rows > 0)
+            return $stmt;
+        else
+            return "";
+    }
+
+    public function setFootballPlayerRole($id, $role)
+    {
+        $sql = "UPDATE football_player
+                SET `role` = ?
+                WHERE id = ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ii', $status, $id);
+        if ($stmt->execute() && $stmt->affected_rows > 0)
+            return $stmt;
+        else
+            return "";
+    }
 }
 ?>
