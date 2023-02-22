@@ -108,5 +108,19 @@ class FootballPlayer
         else
             return "";
     }
+
+    public function setFootballPlayerValue($id, $value)
+    {
+        $sql = "UPDATE football_player
+                SET value = ?
+                WHERE id = ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ii', $value, $id);
+        if ($stmt->execute() && $stmt->affected_rows > 0)
+            return $stmt;
+        else
+            return "";
+    }
 }
 ?>
