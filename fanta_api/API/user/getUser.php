@@ -19,7 +19,7 @@ $result = $user->getUser($id);
 if ($result->num_rows > 0)
 {
     http_response_code(200);
-    echo json_encode($result->fetch_assoc());
+    echo json_encode($result->fetch_assoc(), JSON_PRETTY_PRINT);
 }
 else
 {

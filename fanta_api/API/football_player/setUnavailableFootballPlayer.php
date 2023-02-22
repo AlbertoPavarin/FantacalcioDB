@@ -1,24 +1,17 @@
 <?php
 require("../../COMMON/connect.php");
-require("../../MODEL/user.php");
+require("../../MODEL/footballPlayer.php");
 
 header("Content-type: application/json; charset=UTF-8");
 
 $db = new Database();
 $conn = $db->connect();
-$user = new User($conn);
+$player = new footballPlayer($conn);
 
-$result = $user->getArchiveUsers();
-if ($result->num_rows > 0)
+if ($player->deleteUser($id))
 {
-    $users = array();
-    while($record = $result->fetch_assoc())
-    {
-        $users[] = $record;
-    }
-
     http_response_code(200);
-    echo json_encode($users, JSON_PRETTY_PRINT);
+    echo json_encode(["response" => true, "message" => "User deleted"]);
 }
 else
 {
@@ -27,3 +20,4 @@ else
 }
 
 die();
+?>

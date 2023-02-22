@@ -1,24 +1,24 @@
 <?php
 require("../../COMMON/connect.php");
-require("../../MODEL/user.php");
+require("../../MODEL/footballPlayer.php");
 
 header("Content-type: application/json; charset=UTF-8");
 
 $db = new Database();
 $conn = $db->connect();
-$user = new User($conn);
+$footballPlayer = new FootballPlayer($conn);
 
-$result = $user->getArchiveUsers();
+$result = $footballPlayer->getArchiveFooballPlayers();
 if ($result->num_rows > 0)
 {
-    $users = array();
+    $footballPlayers = array();
     while($record = $result->fetch_assoc())
     {
-        $users[] = $record;
+        $footballPlayers[] = $record;
     }
 
     http_response_code(200);
-    echo json_encode($users, JSON_PRETTY_PRINT);
+    echo json_encode($footballPlayers, JSON_PRETTY_PRINT);
 }
 else
 {
