@@ -37,7 +37,24 @@ class FootballPlayer
 
         $stmt = $this->conn->prepare($sql);
         $stmt->bind_param('i', $id);
-        return $stmt->execute();
+        if ($stmt->execute() && $stmt->affected_rows > 0)
+            return $stmt;
+        else
+            return "";
+    }
+
+    public function setAvailableFootballPlayer($id)
+    {
+        $sql = "UPDATE football_player
+                SET available = 1
+                WHERE id = ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('i', $id);
+        if ($stmt->execute() && $stmt->affected_rows > 0)
+            return $stmt;
+        else
+            return "";
     }
 }
 ?>

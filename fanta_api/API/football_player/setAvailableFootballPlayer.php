@@ -15,10 +15,10 @@ $db = new Database();
 $conn = $db->connect();
 $player = new footballPlayer($conn);
 
-if ($player->setUnavailableFootballPlayer($id))
+if ($player->setAvailableFootballPlayer($id))
 {
     http_response_code(200);
-    echo json_encode(["response" => true, "message" => "Football player set to unavailable"]);
+    echo json_encode(["response" => true, "message" => "Football player set to available"]);
 }
 else
 {
