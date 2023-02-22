@@ -56,5 +56,15 @@ class FootballPlayer
         else
             return "";
     }
+
+    public function AddFootballPlayer($name, $surname, $team, $role, $status, $date_birth, $value)
+    {
+        $sql = "INSERT INTO football_player(name, surname, team, `role`, status, date_birth, value)
+                VALUES (?, ?, ?, ?, ?, ?, ?);";
+        
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('ssiiisi', $name, $surname, $team, $role, $status, $date_birth, $value);
+        return $stmt->execute();
+    }
 }
 ?>
