@@ -14,5 +14,12 @@ class Role
 
         return $this->conn->query($sql);
     }
+
+    public function getArchiveRoles()
+    {
+        $sql = "SELECT * from `role`";
+
+        return $this->conn->query($sql);
+    }
 }
 ?>
