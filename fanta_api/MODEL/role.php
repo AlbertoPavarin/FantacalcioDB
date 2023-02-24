@@ -21,5 +21,15 @@ class Role
 
         return $this->conn->query($sql);
     }
+
+    public function addRole($desc)
+    {
+        $sql = "INSERT INTO `role`(description)
+                VALUES (?);";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('s', $desc);
+        return $stmt->execute();
+    }
 }
 ?>
